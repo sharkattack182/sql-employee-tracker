@@ -24,7 +24,17 @@ function initiateApp() {
             name: "initial_choice"
         }
     ]).then(function(res) {
-        console.log(res.initial_choice);
-        initiateApp();
-    })
+        var response = res.initial_choice;
+        if(response === "View all employees") {
+            displayAllEmployees();
+        }
+    });
+
+    function displayAllEmployees() {
+        connection.query("SELECT * FROM employee", function(err,res) {
+            if(err) throw err;
+            console.table(res);
+            initiateApp();
+        })
+    }
 }
