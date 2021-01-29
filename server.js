@@ -28,6 +28,12 @@ function initiateApp() {
         if(response === "View all employees") {
             displayAllEmployees();
         }
+        else if (response === "View all roles") {
+            displayAllRoles();
+        }
+        else if(response === "View all departments") {
+            displayAllDepartments();
+        }
     });
 
     function displayAllEmployees() {
@@ -36,5 +42,21 @@ function initiateApp() {
             console.table(res);
             initiateApp();
         })
-    }
+    };
+    
+    function displayAllRoles() {
+        connection.query("SELECT * FROM role", function(err,res) {
+            if(err) throw err;
+            console.table(res);
+            initiateApp();
+        })
+    };
+
+    function displayAllDepartments() {
+        connection.query("SELECT * FROM department", function(err,res) {
+            if(err) throw err;
+            console.table(res);
+            initiateApp();
+        })
+    };
 }
