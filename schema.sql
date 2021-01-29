@@ -26,6 +26,7 @@ CREATE TABLE department (
 
 
 -- Creating the data 
+-- Departments
 INSERT INTO department (name)
 VALUES ("HR");
 INSERT INTO department (name)
@@ -35,7 +36,7 @@ VALUES ("Management");
 INSERT INTO department (name)
 VALUES ("Associate");
 
-
+-- Roles
 INSERT INTO role (title, salary, department_id)
 VALUES ("Hiring Manager", 35000, 1);
 INSERT INTO role (title, salary, department_id)
@@ -53,13 +54,13 @@ VALUES ("Sales Associate", 35000, 4);
 INSERT INTO role (title, salary, department_id)
 VALUES ("Logistics Associate", 35000, 4);
 
-
+-- Executives
 INSERT INTO employee (first_name, last_name, role_id)    -- 1
 VALUES ("Brian", "Smith", 3);
 INSERT INTO employee (first_name, last_name, role_id)   -- 2
 VALUES ("Sally", "Smith", 4);
 
-
+-- HR and Management
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 3
 VALUES ("Gary", "Wilson", 2, 2);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 4
@@ -69,7 +70,7 @@ VALUES ("Rebecca", "Nickleson", 5, 1);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 6
 VALUES ("Lawrence", "Davidson", 6, 1);
 
-
+-- Sales Associates
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 7 
 VALUES ("Chris", "Smith", 7, 5);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 8
@@ -79,7 +80,7 @@ VALUES ("Amy", "Reynolds", 7, 5);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 10
 VALUES ("Susan", "Collins", 7, 5);
 
-
+-- Logistics Associates
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 11
 VALUES ("Randy", "Green", 8, 6);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 12
@@ -127,7 +128,7 @@ WHERE id = 7;
 DELETE FROM department
 WHERE id = 5;
 
-
+-- Select all 
 SELECT * FROM employee;
 SELECT * FROM department;
 SELECT * FROM role;
