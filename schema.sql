@@ -117,7 +117,15 @@ LEFT JOIN department AS d
 ON d.id = role.department_id;
 
 
+-- Deleting Methods
+DELETE FROM employee
+WHERE id = 11;
 
+DELETE FROM role
+WHERE id = 7;
+
+DELETE FROM department
+WHERE id = 5;
 
 
 SELECT * FROM employee;
