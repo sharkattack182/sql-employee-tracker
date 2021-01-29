@@ -54,40 +54,55 @@ INSERT INTO role (title, salary, department_id)
 VALUES ("Logistics Associate", 35.000, 4);
 
 
-INSERT INTO employee (first_name, last_name, role_id)
+INSERT INTO employee (first_name, last_name, role_id)    -- 1
 VALUES ("Brian", "Smith", 3);
-INSERT INTO employee (first_name, last_name, role_id)
+INSERT INTO employee (first_name, last_name, role_id)   -- 2
 VALUES ("Sally", "Smith", 4);
 
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 3
 VALUES ("Gary", "Wilson", 2, 2);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 4
 VALUES ("Linda", "Thompson", 1, 2);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 5
 VALUES ("Rebecca", "Nickleson", 5, 1);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 6
 VALUES ("Lawrence", "Davidson", 6, 1);
 
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 7 
 VALUES ("Chris", "Smith", 7, 5);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 8
 VALUES ("David", "Anderson", 7, 5);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 9
 VALUES ("Amy", "Reynolds", 7, 5);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 10
 VALUES ("Susan", "Collins", 7, 5);
 
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 11
 VALUES ("Randy", "Green", 8, 6);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 12
 VALUES ("Joe", "Harkins", 8, 6);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 13
 VALUES ("Steve", "Croft", 8, 6);
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)   -- 14
 VALUES ("Nelson", "Brands", 8, 6);
+
+-- Updates
+-- Roles
+UPDATE employee
+SET role_id = 5
+WHERE id = 11;
+
+-- Managers
+UPDATE employee
+SET manager_id = 7
+WHERE id = 11;
+
+
+
+
 
 
 
