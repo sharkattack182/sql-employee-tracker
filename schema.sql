@@ -37,21 +37,21 @@ VALUES ("Associate");
 
 
 INSERT INTO role (title, salary, department_id)
-VALUES ("Hiring Manager", 35.000, 1);
+VALUES ("Hiring Manager", 35000, 1);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Accountant", 33.000, 1);
+VALUES ("Accountant", 33000, 1);
 INSERT INTO role (title, salary, department_id)
-VALUES ("CEO", 55.000, 2);
+VALUES ("CEO", 55000, 2);
 INSERT INTO role (title, salary, department_id)
-VALUES ("CFO", 55.000, 2);
+VALUES ("CFO", 55000, 2);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Sales Manager", 45.000, 3);
+VALUES ("Sales Manager", 45000, 3);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Logistics Manager", 45.000, 3);
+VALUES ("Logistics Manager", 45000, 3);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Sales Associate", 35.000, 4);
+VALUES ("Sales Associate", 35000, 4);
 INSERT INTO role (title, salary, department_id)
-VALUES ("Logistics Associate", 35.000, 4);
+VALUES ("Logistics Associate", 35000, 4);
 
 
 INSERT INTO employee (first_name, last_name, role_id)    -- 1
@@ -101,6 +101,16 @@ SET manager_id = 7
 WHERE id = 11;
 
 
+-- Filter Features
+-- By Manager
+SELECT (role_id, first_name, last_name) 
+FROM employee
+WHERE manager_id = 5;
+
+-- View All Data for employees
+SELECT employee.id, first_name, last_name, title, salary, department_id, manager_id
+FROM employee
+INNER JOIN role ON employee.role_id = role.id;
 
 
 
