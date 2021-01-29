@@ -108,10 +108,13 @@ FROM employee
 WHERE manager_id = 5;
 
 -- View All Data for employees
-SELECT employee.id, first_name, last_name, title, salary, department_id, manager_id
-FROM employee
-INNER JOIN role ON employee.role_id = role.id;
-
+SELECT e.id, e.first_name, e.last_name, title, salary, d.name, em.first_name, em.last_name
+FROM employee as e
+INNER JOIN role ON e.role_id = role.id
+INNER JOIN employee as em
+ON e.manager_id = em.id
+LEFT JOIN department AS d
+ON d.id = role.department_id;
 
 
 
