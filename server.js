@@ -1,4 +1,5 @@
 var mysql = require("mysql");
+var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -11,16 +12,19 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id: " + connection.threadId);
-  afterConnection();
+  initiateApp();
 });
 
-function afterConnection() {
-  connection.query(
-    "SELECT * FROM employee",
-    function (err, res) {
-      if (err) throw err;
-      console.table(res);
-      connection.end();
-    }
-  );
+function initiateApp() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "What would you like to do?",
+            choices: ["View all employees", "View all employees by department", "View all employees by manager", "Add employee", "Remove employee", "Update employee Role", "Update employee manager", "View all roles", "View all departments"],
+            name: "initial_choice"
+        }
+    ]).then(function(res) {
+        console.log(res.initial_choice);
+        initiateApp();
+    })
 }
