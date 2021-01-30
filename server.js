@@ -46,6 +46,8 @@ function initiateApp() {
         displayAllDepartments();
       } else if (response === "View all employees by department") {
         byDepartment();
+      } else if (response === "View all employees by manager") {
+        byManager();
       }
     });
 
@@ -98,15 +100,44 @@ function initiateApp() {
         } else if (response.department === "Associate") {
           dept = 4;
         };
-        
+
         connection.query(
           "SELECT employee.first_name, employee.last_name, role.title, department.name AS department FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON department.id = role.department_id WHERE department.id = " + dept, function(err,res) {
               if(err) throw err;
               console.table(res);
+              initiateApp();
           }
         );
       });
   }
 
-  function byManager() {}
+  function byManager() {
+      var manager;
+      inquirer.prompt([
+          {
+              type: "list",
+              message: "Whos employees would you like to view?",
+              choices: ["Brian Smith", "Sally Smith", "Rebecca Nickleson", "Lawrence Davidson"],
+              name: "manager"
+          }
+      ]).then(function(r) {
+          if(r.manager === "Brian Smith") {
+              manager = 1;
+          } else if(r.manager === "Sally Smith") {
+              manager = 2;
+          } else if(r.manager === "Rebecca Nickleson") {
+            manager = 5;
+        } else if(r.manager === "Lawrence Davidson") {
+            manager = 6;
+        };
+        
+        connection.query(
+            "SELECT employee.first_name, employee.last_name, e.first_name AS manager FROM employee INNER JOIN employee AS e on employee.manager_id = e.id WHERE e.id = " + manager, function(err,res) {
+                if(err) throw err;
+                console.table(res);
+                initiateApp();
+            }
+          );
+      })
+  }
 }
