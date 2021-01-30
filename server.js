@@ -50,7 +50,10 @@ function initiateApp() {
         byManager();
       } else if (response === "Add employee") {
         addEmployee();
+      } else if (response === "Update employee manager") {
+        updateManager();
       }
+
     });
 
   // View All calls
@@ -218,7 +221,46 @@ function updateRole() {
 }
 
 function updateManager() {
+    var managerId; 
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the Id of the employee you wish to update?",
+            name: "id"
+        },
+        {
+            type: "list",
+            message: "Whos is the employees new manager?",
+            choices: ["Brian Smith", "Sally Smith", "Rebecca Nickleson", "Lawrence Davidson"],
+            name: "manager"
+        }
+    ]).then(function(result) {
+        if (result.manager === "Brian Smith") {
+            managerId = 1;
+        } else if(result.manager === "Sally Smith") {
+            managerId = 2;
+        } else if(result.manager === "Rebecca Nickleson") {
+            managerId = 5;
+        }  else if(result.manager === "Lawrence Davidson") {
+            managerId = 6;
+        };
 
+        var query = connection.query("UPDATE employee SET ? WHERE ?",
+        [
+            {
+                manager_id: managerId
+            },
+            {
+                id: result.id
+            }
+        ],
+        function(err,res) {
+            if(err) throw err;
+            console.log(res.affectedRows + " employee updated");
+            initiateApp();
+        })
+
+    })
 }
 
 }
