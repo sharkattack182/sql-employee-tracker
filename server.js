@@ -48,6 +48,8 @@ function initiateApp() {
         byDepartment();
       } else if (response === "View all employees by manager") {
         byManager();
+      } else if (response === "Add employee") {
+        addEmployee();
       }
     });
 
@@ -143,7 +145,66 @@ function initiateApp() {
 
 // Add employee
 function addEmployee() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the employee's first name?",
+            name: "first"
+        },
+        {
+            type: "input",
+            message: "What is the employee's last name?",
+            name: "last"
+        },
+        {
+            type: "list",
+            message: "What is the employee's role?",
+            choices: ["Sales Manager", "Logistics Manager", "Sales Associate", "Logistics Associate"],
+            name: "role"
+        },
+        {
+            type: "list",
+            message: "Whos is the employees manager?",
+            choices: ["Brian Smith", "Sally Smith", "Rebecca Nickleson", "Lawrence Davidson"],
+            name: "manager"
+        }
+    ]).then(function(rez) {
+        var roleId;
+        var managerId;
 
+        console.log("Adding employee...");
+        if (rez.manager === "Brian Smith") {
+            managerId = 1;
+        } else if(rez.manager === "Sally Smith") {
+            managerId = 2;
+        } else if(rez.manager === "Rebecca Nickleson") {
+            managerId = 5;
+        }  else if(rez.manager === "Lawrence Davidson") {
+            managerId = 6;
+        };
+
+
+        if (rez.role === "Sales Manager") {
+            roleId = 5;
+        } else if(rez.role === "Logistics Manager") {
+            roleId = 6;
+        } else if(rez.role === "Sales Associate") {
+            roleId = 7;
+        }  else if(rez.role === "Logistics Associate") {
+            roleId = 8;
+        }
+        var query = connection.query("INSERT INTO employee SET ?",
+        {
+            first_name: rez.first,
+            last_name: rez.last,
+            role_id: roleId,
+            manager_id: managerId
+        }, function(err,res) {
+            if(err) throw err;
+            console.log(res.affectedRows + "employee inserted");
+            initiateApp();
+        })
+    })
 }
 
 // Delete Employee
@@ -157,7 +218,7 @@ function updateRole() {
 }
 
 function updateManager() {
-    
+
 }
 
 }
