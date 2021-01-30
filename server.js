@@ -52,6 +52,8 @@ function initiateApp() {
         addEmployee();
       } else if (response === "Update employee manager") {
         updateManager();
+      } else if (response === "Remove employee") {
+        deleteEmployee();
       }
 
     });
@@ -212,7 +214,23 @@ function addEmployee() {
 
 // Delete Employee
 function deleteEmployee() {
-
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the ID of the employee you wish to remove?",
+            name: "id"
+        }
+    ]).then(function(response) {
+        connection.query("DELETE from employee WHERE ?",
+        {
+            id : response.id
+        }, 
+        function(err, res) {
+            if(err) throw err;
+            console.log("employee deleted");
+            initiateApp();
+        })
+    })
 }
 
 // Update calls
@@ -245,7 +263,7 @@ function updateManager() {
             managerId = 6;
         };
 
-        var query = connection.query("UPDATE employee SET ? WHERE ?",
+        connection.query("UPDATE employee SET ? WHERE ?",
         [
             {
                 manager_id: managerId
