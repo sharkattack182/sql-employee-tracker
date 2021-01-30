@@ -140,4 +140,24 @@ function initiateApp() {
           );
       })
   }
+
+// Add employee
+function addEmployee() {
+
+}
+
+// Delete Employee
+function deleteEmployee() {
+
+}
+
+// Update calls
+function updateRole() {
+
+}
+
+function updateManager() {
+    
+}
+
 }
