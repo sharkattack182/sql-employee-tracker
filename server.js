@@ -54,6 +54,8 @@ function initiateApp() {
         updateManager();
       } else if (response === "Remove employee") {
         deleteEmployee();
+      } else if (response === "Update employee Role") {
+        updateRole();
       }
 
     });
@@ -235,7 +237,43 @@ function deleteEmployee() {
 
 // Update calls
 function updateRole() {
+    var roleId;
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the Id of the employee you wish to update?",
+            name: "id"
+        },
+        {
+            type: "list",
+            message: "What is the employee's new role?",
+            choices: ["Sales Manager", "Logistics Manager", "Sales Associate", "Logistics Associate"],
+            name: "role"
+        }
+    ]).then(function(response) {
+        if (response.role === "Sales Manager") {
+            roleId = 5;
+        } else if(response.role === "Logistics Manager") {
+            roleId = 6;
+        } else if(response.role === "Sales Associate") {
+            roleId = 7;
+        }  else if(response.role === "Logistics Associate") {
+            roleId = 8;
+        }
 
+        connection.query("UPDATE employee SET ? WHERE ?", [
+            {
+                role_id: roleId
+            },
+            {
+                id: response.id
+            }
+        ], function(err,res) {
+            if(err) throw err;
+            console.log("Role Updated"),
+            initiateApp();
+        })
+    })
 }
 
 function updateManager() {
