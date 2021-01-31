@@ -19,4 +19,8 @@ CSS <img src="https://progress-bar.dev/0">
 To download this file please click the green code button above.
 
 ## Visuals
-<img src="./imgs/main-lg.PNG">
+<img src="./imgs/all-employees.PNG">
+<br>
+<img src="./imgs/add.PNG">
+<br>
+<img src="./imgs/delete.PNG">
