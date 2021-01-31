@@ -61,10 +61,18 @@ function initiateApp() {
     });
 
   // View All calls
+  function displayUpdate() {
+    connection.query("SELECT * FROM employee", function (err, res) {
+        if (err) throw err;
+        console.log("\n")
+        console.table(res);
+      });
+  }
 
   function displayAllEmployees() {
     connection.query("SELECT * FROM employee", function (err, res) {
       if (err) throw err;
+      console.log("\n")
       console.table(res);
       initiateApp();
     });
@@ -208,7 +216,8 @@ function addEmployee() {
             manager_id: managerId
         }, function(err,res) {
             if(err) throw err;
-            console.log(res.affectedRows + "employee inserted");
+            // console.log(res.affectedRows + "employee inserted");
+            displayUpdate();
             initiateApp();
         })
     })
@@ -229,7 +238,8 @@ function deleteEmployee() {
         }, 
         function(err, res) {
             if(err) throw err;
-            console.log("employee deleted");
+            // console.log("employee deleted");
+            displayUpdate();
             initiateApp();
         })
     })
@@ -270,7 +280,7 @@ function updateRole() {
             }
         ], function(err,res) {
             if(err) throw err;
-            console.log("Role Updated"),
+            displayUpdate();
             initiateApp();
         })
     })
@@ -312,7 +322,8 @@ function updateManager() {
         ],
         function(err,res) {
             if(err) throw err;
-            console.log(res.affectedRows + " employee updated");
+            // console.log(res.affectedRows + " employee updated");
+            displayUpdate();
             initiateApp();
         })
 
